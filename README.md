@@ -1,1 +1,75 @@
 # aws-csaa-notes-2019
+
+## IAM
+- AWS managed policies are default for common permissions
+- Access Key ID and Secret Access Key for programmatic access
+
+## CloudWatch
+- Application and infrastructure monitoring
+- Create billing alarms
+
+## S3
+- Object based storage (key, value, version ID, and metadata), files only
+- Subresources include access control lists (ACLs) and torrents
+- Universal namespace, unlimited storage with files up to 5TB
+- Data consistency
+    - Read after Write consistency for PUTS of new objects
+    - Eventual Consistency for overwrite PUTS and DELETES
+- Cross Region Replication pricing
+- Transfer Acceleration uses edge locations and Amazon’s backbone network (CloudFront)
+- Successful uploads generate HTTP 200
+- MFA Delete
+- Control access using bucket ACLs or bucket policies
+- Configure access logs to record all requests made to the bucket
+
+### S3 Storage Classes
+- S3 Standard guaranteed 99.9% availability and 99.999999999% (11 x 9s) durability
+- S3 IA (Infrequently Accessed) for data accessed less frequently with retrieval fee
+- S3 One Zone IA or RRS (Reduced Redundancy Storage) does not have multiple availability zone data resilience
+- S3 Intelligent Tiering uses ML to move objects around storage classes
+- S3 Glacier for cheap archiving and configurable retrieval times
+- S3 Glacier Deep Archive for cheapest storage with a 12 hour retrieval time
+
+### S3 Encryption
+- Encryption in transit using SSL/TLS
+- Encryption at rest, server side
+    - S3 Managed Keys (SSE-S3), managed by S3
+    - AWS Key Management Service, Managed Keys (SSE-KMS), managed by KMS and the user
+    - Server Side Encryption with Customer Provided Keys (SSE-C)
+- Encryption at rest, client side
+
+### S3 Versioning
+- Once enabled, versioning can only be suspended
+- Have to manually set new file versions to public
+- Deleting an object only places a delete marker
+- Lifecycle management to move or expire current and previous object versions
+
+### S3 Cross Region Replication
+- Versioning must be enabled on both buckets
+- Regions must be unique
+- Files in an existing bucket are not replicated automatically
+- Delete markers, deleting versions, and deleting delete markers are not replicated
+
+## CloudFront
+- A distribution (content delivery network or CDN) made up of distributed servers (network)
+- Deliver web content to users based on geographic location
+- An edge location is where content is cached for the TTL (time-to-live)
+- Web distribution typically for websites
+- RTMP (real-time message protocol) distribution used for Adobe Flash media streaming
+- You can clear old cached objects for a fee (invalidating the cache)
+- Restrict access using signed URLs or cookies (e.g. premium Netflix users)
+
+## Snowball
+- Petabyte-scale (50TB or 80TB) data transport solution to transfer to and from AWS
+- Snowboard Edge has 100TB storage and compute capabilities for offline
+- Snowmobile is exabyte-scale (up to 100PB) for libraries, repositories, and migrations
+- Can import to and export from S3
+
+## Storage Gateway
+- Connects on-prem software appliance with cloud-based storage
+- Available as physical hardware or a VM image for ESXi or Hyper-V
+- File Gateway (NFS), flat files are stored as objects in S3 buckets and accessed through a network file system (NFS) mount point
+- Volume Gateway (iSCSI), stored or cached disk volumes that can be backed up as point-in-time snapshots in EBS
+    - Stored volumes let you store primary data locally which is asynchronously backed up to S3 as EBS snapshots from 1GB - 16TB
+    - Cached volumes (1GB - 32TB in size) use S3 for primary data storage but frequently accessed data is retained locally in the storage gateway
+- Tape Gateway (VTL), virtual tape library for archiving
