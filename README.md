@@ -61,7 +61,7 @@
 
 ## Snowball
 - Petabyte-scale (50TB or 80TB) data transport solution to transfer to and from AWS
-- Snowboard Edge has 100TB storage and compute capabilities for offline
+- Snowball Edge has 100TB storage and compute capabilities for offline
 - Snowmobile is exabyte-scale (up to 100PB) for libraries, repositories, and migrations
 - Can import to and export from S3
 
@@ -73,3 +73,28 @@
     - Stored volumes let you store primary data locally which is asynchronously backed up to S3 as EBS snapshots from 1GB - 16TB
     - Cached volumes (1GB - 32TB in size) use S3 for primary data storage but frequently accessed data is retained locally in the storage gateway
 - Tape Gateway (VTL), virtual tape library for archiving
+
+## EC2
+### EC2 Pricing Models
+- On Demand, by the hour or second with no commitment
+- Reserved (Standard, Convertible, or Scheduled), capacity reservation on 1 or 3 year contract terms
+- Spot, bid on instance capacity, useful for flexible start and end times (no charge if terminated by Amazon)
+- Dedicated Hosts, physical EC2 server, useful for server-bound software licenses
+
+### EC2 Instance Types
+```
+F - FPGA
+I - IOPS
+G - Graphics
+H - High Disk Throughput
+T - Cheap general purpose (T2 Micro)
+D - Density
+R - RAM
+M - Main choice for general purpose apps
+C - Compute
+P - GPGPU
+X - Extreme Memory
+Z - Extreme Memory and CPU
+A - Arm-based workloads
+U - Bare Metal
+```
