@@ -75,6 +75,12 @@
 - Tape Gateway (VTL), virtual tape library for archiving
 
 ## EC2
+- Termination Protection is turned off by default
+- The root EBS volume is deleted upon termination by default on EBS-backed instances
+- EBS root volumes on default AMIs cannot be encrypted
+    - Use third party tools (e.g. BitLocker) or custom AMIs for root volume encryption
+- Additional volumes can be encrypted
+
 ### EC2 Pricing Models
 - On Demand, by the hour or second with no commitment
 - Reserved (Standard, Convertible, or Scheduled), capacity reservation on 1 or 3 year contract terms
@@ -98,3 +104,32 @@ Z - Extreme Memory and CPU
 A - Arm-based workloads
 U - Bare Metal
 ```
+
+### EC2 Security Groups
+- By default, all inbound traffic is blocked and all outbound traffic is allowed
+- Changes to Security Groups take effect immediately
+- You can have many EC2s within a security group and multiple security groups attached to EC2s
+- Security Groups are stateful (traffic allowed in is automatically allowed back out)
+- You cannot block sepcific IP addresses (use network ACLs instead)
+- You cannot specify deny rules
+
+## EBS
+- Persistent block storage volumes for use with EC2s
+- Automatically replicated within its Availability Zone (AZ)
+
+### EBS Types
+API Name | Volume Type
+:--- | :---
+gp2 | General Purpose SSD
+io1 | Provisioned IOPS SSD
+st1 | Throughput Optimized HDD
+sc1 | Cold HDD
+Standard | EBS Magnetic
+
+### EBS Volumes & Snapshots
+- Snapshots exist on S3 and are incremental (they store the delta between versions)
+- Best to stop the instance before taking a snapshot of a root EBS volume
+- AMIs can be created from both Volumes and Snapshots
+- EBS volume size and storage type can be changed on the fly
+- Volumes will always be in the same AZ as the EC2 instance
+- EC2 volumes can be moved to different AZs and regions
