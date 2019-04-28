@@ -4,10 +4,6 @@
 - AWS managed policies are default for common permissions
 - Access Key ID and Secret Access Key for programmatic access
 
-## CloudWatch
-- Application and infrastructure monitoring
-- Create billing alarms
-
 ## S3
 - Object based storage (key, value, version ID, and metadata), files only
 - Subresources include access control lists (ACLs) and torrents
@@ -113,13 +109,31 @@ U - Bare Metal
 - You cannot block sepcific IP addresses (use network ACLs instead)
 - You cannot specify deny rules
 
+### AMI Types
+- Selected based on region, OS, architecture, launch permissions, or storage for root device
+- Storage is either Instance Store (Ephermeral Storage) or EBS Backed Volumes
+- Instance Store volumes cannot be stopped (will lose data)
+- EBS backed instances can be stopped (will not lose data)
+- Both types can be rebooted without losing data
+- As root volumes, both types are deleted on termination (EBS volumes can be kept as an option)
+
+### Encrypted Root Device Volumes & Snapshots
+- Snapshots of encrypted volumes are also encrypted
+- Volumes restored from encrypted snapshots are encrypted
+- Only unencrypted snapshots can be shared (other AWS accounts or public)
+- How to encrypt the root device volume
+    - Create a snapshot of the root device volume
+    - Create a copy of the snapshot with encryption enabled
+    - Create an AMI from the snapshot
+    - Launch a new instance using the AMI
+
 ## EBS
 - Persistent block storage volumes for use with EC2s
 - Automatically replicated within its Availability Zone (AZ)
 
 ### EBS Types
 API Name | Volume Type
-:--- | :---
+--- | ---
 gp2 | General Purpose SSD
 io1 | Provisioned IOPS SSD
 st1 | Throughput Optimized HDD
@@ -133,3 +147,11 @@ Standard | EBS Magnetic
 - EBS volume size and storage type can be changed on the fly
 - Volumes will always be in the same AZ as the EC2 instance
 - EC2 volumes can be moved to different AZs and regions
+
+## CloudWatch
+- Monitors AWS resources and applications running on AWS
+- Host level metrics consist of CPU, network, disk, and status check (e.g. underlying hypervisor)
+- Will monitor EC2 events every 5 minutes (1 minute intervals using detailed monitoring)
+- Create alarms which trigger notifications (e.g. for billing)
+- Create dashboards, events, and logs
+- CloudTrail increases visibility on user resource activity by recording console actions and API calls
