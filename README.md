@@ -127,6 +127,23 @@ U - Bare Metal
     - Create an AMI from the snapshot
     - Launch a new instance using the AMI
 
+### AWS Command Line
+- Access is configured in IAM
+- The CLI is global
+- Roles are universal, easier to manage, and more secure than storing keys on EC2s
+
+### Instance Metadata
+- curl http://169.254.169.254/latest/meta-data/
+- curl http://169.254.169.254/latest/user-data/
+
+### EFS
+- 2+ instances can share an EFS volume
+- Grows and shrinks automatically as files are added or removed
+- Petabyte-scale storage that supports thousands of NFSv4 connections
+- Pay for the storage you use (no pre-provisioning required)
+- Data is stored across multiple AZs within a region
+- Read after Write consistency
+
 ## EBS
 - Persistent block storage volumes for use with EC2s
 - Automatically replicated within its Availability Zone (AZ)
