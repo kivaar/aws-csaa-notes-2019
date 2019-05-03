@@ -127,6 +127,15 @@ U - Bare Metal
     - Create an AMI from the snapshot
     - Launch a new instance using the AMI
 
+### AWS Command Line
+- Access is configured in IAM
+- The CLI is global
+- Roles are universal, easier to manage, and more secure than storing keys on EC2s
+
+### Instance Metadata
+- curl http://169.254.169.254/latest/meta-data/
+- curl http://169.254.169.254/latest/user-data/
+
 ### EC2 Placement Groups
 - Placement group names must be unique within your AWS account
 - Placement groups cannot be merged
@@ -138,6 +147,14 @@ U - Bare Metal
     - Group of instances that are each placed on distinct underlying hardware
     - Recommended for a small number of critical instances that should be kept separate
     - Can span multiple AZs
+
+### EFS
+- 2+ instances can share an EFS volume
+- Grows and shrinks automatically as files are added or removed
+- Petabyte-scale storage that supports thousands of NFSv4 connections
+- Pay for the storage you use (no pre-provisioning required)
+- Data is stored across multiple AZs within a region
+- Read after Write consistency
 
 ## EBS
 - Persistent block storage volumes for use with EC2s
