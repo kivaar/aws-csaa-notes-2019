@@ -127,6 +127,18 @@ U - Bare Metal
     - Create an AMI from the snapshot
     - Launch a new instance using the AMI
 
+### EC2 Placement Groups
+- Placement group names must be unique within your AWS account
+- Placement groups cannot be merged
+- Existing instances cannot be moved into a placement group (create an AMI instead)
+- Cluster Placement Group
+    - Grouping of certain instances within a single AZ (cannot span multiple AZs)
+    - Recommended for low network latency and/or high network throughput
+- Spread Placement Group
+    - Group of instances that are each placed on distinct underlying hardware
+    - Recommended for a small number of critical instances that should be kept separate
+    - Can span multiple AZs
+
 ## EBS
 - Persistent block storage volumes for use with EC2s
 - Automatically replicated within its Availability Zone (AZ)
