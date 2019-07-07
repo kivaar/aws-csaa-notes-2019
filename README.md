@@ -1,5 +1,37 @@
 # aws-csaa-notes-2019
 
+Table of Contents
+-----------------
+- [IAM](#iam)
+- [S3](#s3)
+    - [S3 Storage Classes](#s3-storage-classes)
+    - [S3 Encryption](#s3-encryption)
+    - [S3 Versioning](#s3-versioning)
+    - [S3 Cross Region Replication](#s3-cross-region-replication)
+- [CloudFront](#cloudfront)
+- [Snowball](#snowball)
+- [Storage Gateway](#storage-gateway)
+- [EC2](#ec2)
+    - [EC2 Pricing Models](#ec2-pricing-models)
+    - [EC2 Instance Types](#ec2-instance-types)
+    - [EC2 Security Groups](#ec2-security-groups)
+    - [AMI Types](#ami-types)
+    - [Encrypted Root Device Volumes & Snapshots](#encrypted-root-device-volumes--snapshots)
+    - [AWS Command Line](#aws-command-line)
+    - [Instance Metadata](#instance-metadata)
+    - [EC2 Placement Groups](#ec2-placement-groups)
+    - [EFS](#efs)
+- [EBS](#ebs)
+    - [EBS Types](#ebs-types)
+    - [EBS Volumes & Snapshots](#ebs-volumes--snapshots)
+- [CloudWatch](#cloudwatch)
+- [Databases](#databases)
+    - [Relational Databases](#relational-databases)
+    - [DyanamoDB](#dyanamodb)
+    - [Redshift](#redshift)
+    - [Aurora](#aurora)
+    - [Elasticache](#elasticache)
+
 ## IAM
 - AWS managed policies are default for common permissions
 - Access Key ID and Secret Access Key for programmatic access
