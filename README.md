@@ -196,3 +196,52 @@ Standard | EBS Magnetic
 - ElastiCache improves the performance of web apps by caching the most common web queries (as opposed to retrieving from disk-based databases)
     - Memcached
     - Redis
+
+### Relational Databases
+- RDS runs on virtual machines (cannot log in; patching is Amazon's responsibility)
+- RDS is not serverless
+    - Aurora Serverless is serverless
+- Automated backups allow you to recover within a retention period between one and 35 days
+    - Takes daily snapshots and stores transaction logs which allows for recovery down to a second
+    - Enabled by default and stored in S3
+- Database snapshots are manual and are still stored if the original RDS has been deleted (unlike automated backups)
+- Restored database versions have a new DNS endpoint
+- Encryption uses the KMS service for encryption at rest (includes backups, read replicas, and snapshots)
+- Read replicas are available for MySQL, PostgreSQL, MariaDB, and Aurora
+    - Backups must be enabled
+    - Can be in different regions
+- Multi-AZ failover can be forced by rebooting the active RDS instance
+
+### DyanamoDB
+- For applications that need consistent, single-digit millisecond latency at any scale
+- Supports both document and key-value data models
+- Stored on SSDs and spread across 3 geographically distinct data centres
+- Eventual consistent reads (default) is when consistency across all copies is usually reached within a second (best read performance)
+- Strongly consistent reads return a result that reflects all writes that received a successful response prior to the read
+
+### Redshift
+- Petabyte-scale data warehouse service
+- Single node (160Gb)
+- Multi-node
+    - Leader node (manages client connections and receives queries)
+    - Up to 128 compute nodes that store data and perform queries and computations
+- Advanced compression performed on columns
+- Backups are enabled by default with a 1 day retention period (max 35 days)
+    - Always attempts to maintain 3 copies (original, replica, and S3 backup)
+    - Can asynchronously replicate snapshots to S3 in another region for DR
+- Encryption in transit using SSL and at rest using AES-256
+- Multi-AZ currently not available
+
+### Aurora
+- MySQL-compatible relational database engine
+- Start with 10GB and scales in 10GB increments to 64TB
+- 2 copies are contained in each AZ with a minimum of 3 AZs (6 copies)
+- Designed to handle losing 2 copies of data without affecting write, and 3 copies without affecting read
+- Self-healing (disks are continuously scanned for errors and repaired automatically)
+- Aurora Replicas (up to 15) or MySQL Replicas (up to 5)
+- Automated backups are always enabled and snapshots are available
+
+### Elasticache
+- Web service to deploy, operate, and scale an in-memory cache in the cloud
+- Memcached for scaling horizontally
+- Redis for advanced data types, Multi-AZ, and backup/restore
