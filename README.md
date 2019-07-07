@@ -184,3 +184,15 @@ Standard | EBS Magnetic
 - Create alarms which trigger notifications (e.g. for billing)
 - Create dashboards, events, and logs
 - CloudTrail increases visibility on user resource activity by recording console actions and API calls
+
+## Databases
+- Relational databases have tables (worksheets) with rows and fields (columns)
+    - SQL, MySQL, PostgreSQL, Oracle, Amazon Aurora, MariaDB
+    - Multi-AZ for disaster recovery (DR) and read repliacas for performance
+- Non relational databases have collections (tables) with documents (rows) and key value pairs (fields or columns)
+    - DynamoDB (NoSQL)
+- Data warehousing is for business intelligence (BI), used to pull in large and complex data sets for querying
+    - Amazon Redshift for online analytics processing (OLAP)
+- ElastiCache improves the performance of web apps by caching the most common web queries (as opposed to retrieving from disk-based databases)
+    - Memcached
+    - Redis
