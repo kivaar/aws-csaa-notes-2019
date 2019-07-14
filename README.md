@@ -31,6 +31,8 @@ Table of Contents
     - [Redshift](#redshift)
     - [Aurora](#aurora)
     - [Elasticache](#elasticache)
+- [DNS](#dns)
+    - [Route 53](#route-53)
 
 ## IAM
 - AWS managed policies are default for common permissions
@@ -277,3 +279,29 @@ Standard | EBS Magnetic
 - Web service to deploy, operate, and scale an in-memory cache in the cloud
 - Memcached for scaling horizontally
 - Redis for advanced data types, Multi-AZ, and backup/restore
+
+## DNS
+- An A record maps a name to one or more IP addresses
+- A CNAME is used to resolve one domain name to another
+- An ALIAS record is like a CNAME that can be used for naked domain names
+- ELBs do not have pre-defined IP addresses; you resolve to them using a DNS name
+
+### Route 53
+- You can buy domain names directly with AWS (can take up to 3 days)
+- Simple Routing
+    - Only one record with multiple IP addresses
+    - Route 53 returns all values in a random order
+- Weighted Routing
+    - Split traffic based on different weights assigned
+    - Set health checks on individual record sets (records that fail are removed until they pass)
+- Latency-based Routing
+    - Routes traffic based on the lowest network latency for the end user
+- Failover Routing
+    - Active/passive setup where Route 53 monitors the health of the primary site
+- Geolocation Routing
+    - Choose where traffic is sent based on the geographic location of users
+- Geoproximity Routing (Traffic Flow Only)
+    - Route traffic based on the geographic location of users and resources
+    - Optionally use bias values to route more or less traffic to specific resources
+- Multivalue Answer Routing
+    - Similar to Simple Routing with health checks to only return values for healthy resources
